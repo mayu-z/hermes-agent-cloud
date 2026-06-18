@@ -2,18 +2,8 @@
  * For more details on how to configure Wrangler, refer to:
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
-{
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "hermes-agent",
-	"main": "src/index.js",
-	"compatibility_date": "2026-06-18",
-	"observability": {
-		"enabled": true
-	},
-	"upload_source_maps": true,
-	"compatibility_flags": [
-		"nodejs_compat"
-	]
+
+	
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
@@ -42,4 +32,16 @@
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
 	// "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
+
+{
+  "name": "hermes-agent",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-18",
+  "compatibility_flags": ["nodejs_compat"],
+  "kv_namespaces": [
+    {
+      "binding": "HERMES_MEMORY",
+      "id": "a0d8c5d9c8b64e5db25f46a82ca9bd86"
+    }
+  ]
 }
