@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hermes AI</title>
+  <style>
+    body { font-family: Arial; max-width: 600px; margin: 40px auto; padding: 20px; background: #0f0f0f; color: #eee; }
+    #chat { height: 400px; overflow-y: auto; border: 1px solid #333; padding: 15px; margin-bottom: 10px; border-radius: 8px; }
+    .user { color: #7eb8f7; margin: 8px 0; }
+    .hermes { color: #a8e6a3; margin: 8px 0; }
+    input { width: 80%; padding: 10px; background: #222; color: #eee; border: 1px solid #444; border-radius: 6px; }
+    button { padding: 10px 16px; background: #4a90e2; color: white; border: none; border-radius: 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>⚡ Hermes AI</h2>
+  <div id="chat"></div>
+  <input id="input" placeholder="Type a message..." onkeydown="if(event.key==='Enter') send()" />
+  <button onclick="send()">Send</button>
+
+  <script>
+    const API = "https://hermes-agent.mayuresh2k4.workers.dev";
+    const sessionId = "ui-" + Date.now();
+
+    async function send() {
+      const input = document.getElementById("input");
+      const message = input.value.trim();
+      if (!message) return;
+      input.value = "";
+
+      appendMessage("You", message, "user");
+
+      const res = await fetch(API + "/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message, sessionId })
+      });
+      const data = await res.json();
+      appendMessage("Hermes", data.reply, "hermes");
+    }
+
+    function appendMessage(who, text, cls) {
+      const chat = document.getElementById("chat");
+      chat.innerHTML += `<div class="${cls}"><b>${who}:</b> ${text}</div>`;
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>
