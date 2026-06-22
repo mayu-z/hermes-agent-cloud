@@ -5,7 +5,7 @@ import "github.com/charmbracelet/lipgloss"
 var (
 	// Phosphor green palette — terminal.shop vibe
 	ColorGreen      = lipgloss.Color("#465e4cff") // classic matrix green
-	ColorGreenDim   = lipgloss.Color("#007A1E")
+	ColorGreenDim   = lipgloss.Color("#3c9151")
 	ColorGreenFaint = lipgloss.Color("#003A0E")
 	ColorAmber      = lipgloss.Color("#FFB000") // tool / highlight
 	ColorRed        = lipgloss.Color("#FF2222")
