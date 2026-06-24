@@ -789,5 +789,5 @@ func fmtTools(tools []string) string {
 			parts = append(parts, t)
 		}
 	}
-	return "using: " + strings.Join(parts, " → ")
+	return "using: " + strings.Join(parts, " -> ")
 }
